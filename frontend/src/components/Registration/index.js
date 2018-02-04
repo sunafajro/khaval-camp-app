@@ -13,7 +13,7 @@ import { Aux, Spinner } from "../../utils";
 const emptyForm = {
   lastNameEl: "",
   firstNameEl: "",
-  chuvasNameEl: "",
+  chuvashNameEl: "",
   sexEl: "",
   birthdateEl: Moment(),
   phoneEl: "",

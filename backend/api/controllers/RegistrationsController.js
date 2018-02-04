@@ -1,5 +1,5 @@
 const moment = require("moment");
-const sortArrayItems = require("../utils");
+const Utils = require("../utils");
 /**
  * RegistrationsController
  *
@@ -11,7 +11,7 @@ module.exports = {
   readRegistrations: (req, res) => {
     Registrations.readRegistrations()
       .then(result => {
-        const results = sortArrayItems(result, "createdAt", "DESC");
+        const results = Utils.sortArrayItems(result, "createdAt", "DESC");
         if (req.session.loggedIn) {
           return res.status(200).send({ result: results });
         } else {
@@ -56,26 +56,24 @@ module.exports = {
             } else {
               Registrations.createRegistration(data)
                 .then(result => {
-                  // MailerService
-                  // .send({
-                  //   to: "sunafajro@gmail.com",
-                  //   text: 'Новая заявка на участие в летнем лагере Хавал!'
-                  // })
-                  // .then(result => {;
+                  MailerService
+                  .send({
+                    to: "sunafajro@gmail.com",
+                    text: Utils.prepareEmailText(data)
+                  })
+                  .then(result => {;
                   return res.status(200).send({ result });
-                  // })
-                  // .catch(error => {
-                  //   return res.status(500).send(error.message)
-                  // });
+                  })
+                  .catch(error => {
+                    return res.status(500).send(error.message)
+                  });
                 })
                 .catch(error => {
-                  console.log(error);
                   return res.status(500).send({ message: error.message })
                 });
             }
           })
           .catch(error => {
-            console.log(error);
             return res.status(500).send({ message: error.message })
           });
       } else {
@@ -86,20 +84,19 @@ module.exports = {
     } else {
       Registrations.createRegistration(data)
         .then(result => {
-          // MailerService
-          // .send({
-          //   to: "sunafajro@gmail.com",
-          //   text: 'Новая заявка на участие в летнем лагере Хавал!'
-          // })
-          // .then(result => {;
+          MailerService
+          .send({
+            to: "sunafajro@gmail.com",
+            text: Utils.prepareEmailText(data)
+          })
+          .then(result => {;
           return res.status(200).send({ result });
-          // })
-          // .catch(error => {
-          //   return res.status(500).send(error.message)
-          // });
+          })
+          .catch(error => {
+            return res.status(500).send(error.message)
+          });
         })
         .catch(error => {
-          console.log(error);
           return res.status(500).send({ message: error.message })
         });
     }
@@ -112,7 +109,6 @@ module.exports = {
           return res.status(200).send({ result });
         })
         .catch(error => {
-          console.log(error);
           return res.status(500).send({ message: error.message })
         });
     } else {
@@ -127,7 +123,6 @@ module.exports = {
           return res.status(200).send({ result });
         })
         .catch(error => {
-          console.log(error);
           return res.status(500).send({ message: error.message })
         });
     } else {

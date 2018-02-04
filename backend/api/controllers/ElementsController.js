@@ -1,10 +1,10 @@
-const sortArrayItems = require("../utils");
+const Utils = require("../utils");
 
 module.exports = {
   readElements: (req, res) => {
     Elements.readElements()
       .then(result => {
-        const results = sortArrayItems(result, "num", "ASC");
+        const results = Utils.sortArrayItems(result, "num", "ASC");
         const filteredData = results.map(item => {
           let newItem = {};
           newItem.id = item.name;
