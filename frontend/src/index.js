@@ -6,6 +6,9 @@ import {ConnectedRouter} from 'react-router-redux';
 import store, {history} from './store';
 import ru from 'antd/lib/locale-provider/ru_RU';
 import App from './components/App';
+import moment from 'moment';
+import 'moment/locale/ru';
+moment.locale('ru');
 
 ReactDOM.render((
   <Provider store={store}>
