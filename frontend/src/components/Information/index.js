@@ -72,8 +72,8 @@ export const Information = () => {
             </p>
             <p>Алпарух (Блинов Александр) 89023285051</p>
             <p>
-              <a href="https://vk.com/alparuh">vk.com</a>{" "}
-              <a href="https://www.facebook.com/al.blinov">fb.com</a>
+              <a href="https://vk.com/alparuh" target="_blank" rel="noopener noreferrer">vk.com</a>{" "}
+              <a href="https://www.facebook.com/al.blinov" target="_blank" rel="noopener noreferrer">fb.com</a>
             </p>
           </Card>
         </Col>
@@ -84,7 +84,7 @@ export const Information = () => {
             </p>
             <p>Салампи (Антонова Оксана) 89680799852</p>
             <p>
-              <a href="https://vk.com/id124601891">vk.com</a>
+              <a href="https://vk.com/id124601891" target="_blank" rel="noopener noreferrer">vk.com</a>
             </p>
           </Card>
         </Col>
