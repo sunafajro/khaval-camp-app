@@ -74,6 +74,9 @@ class RegForm extends Component {
         visible: false
       });
     }
+    if (nextProps.error) {
+      window.grecaptcha.reset();
+    }
   }
 
   validateInput = () => {

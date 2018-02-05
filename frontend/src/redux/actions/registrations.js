@@ -112,11 +112,11 @@ export const createRegistrationSuccess = registration => {
 };
 
 export const createRegistrationFailed = error => {
-  message.error(error);
+  message.error(error ? error : "Произошла ошибка");
   return dispatch => {
     dispatch({
       type: CREATE_REGISTRATION_FAILED,
-      error
+      error: error ? error : "Произошла ошибка"
     });
   };
 };
