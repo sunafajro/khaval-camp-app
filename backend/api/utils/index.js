@@ -39,14 +39,14 @@ module.exports = {
       beginer: "Начальный",
       basic: "Базовый",
       middle: "Средний",
-      High: "Высокий"
+      high: "Высокий"
     };
     const residence = {
-      "tent": "В палатке",
+      tent: "В палатке",
       "2floor": "2й этаж над столовой",
-      "corp20": "Корпус №20",
-      "zabava": "Домик Забава",
-      "veranda": "На веранде (для организаторов)"
+      corp20: "Корпус №20",
+      zabava: "Домик Забава",
+      veranda: "На веранде (для организаторов)"
     };
     const duration = {
       "1": "1 день",
@@ -74,7 +74,7 @@ module.exports = {
     text =
       text +
       "Пол: " +
-      (data.sex !== "male" ? "Муж" : "Жен") +
+      (data.sex === "male" ? "Муж" : "Жен") +
       ", ДР: " +
       data.birthdate +
       "\n";
@@ -89,7 +89,12 @@ module.exports = {
       "\n";
     text = text + "Город: " + data.city + ", Страна: " + data.country + "\n";
     text = text + "Уровень языка: " + level[data.level] + "\n";
-    text = text + "Проживание: " + residence[data.residence] + (data.room ? ", Комната/место: " + data.room : '') + "\n";
+    text =
+      text +
+      "Проживание: " +
+      residence[data.residence] +
+      (data.room ? ", Комната/место: " + data.room : "") +
+      "\n";
     text =
       text + "Продолжительность участия: " + duration[data.duration] + "\n";
     text =
