@@ -26,7 +26,7 @@ class ParticipantsTable extends Component {
     const { fetching, registrations } = this.props;
     return (
       <div>
-        <Table columns={columns} dataSource={registrations} loading={fetching} size="small" />
+        <Table columns={columns} dataSource={registrations} loading={fetching} size="small" pagination={{pageSize: 20}} />
       </div>
     );
   }
