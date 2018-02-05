@@ -30,23 +30,23 @@ module.exports = {
   },
   prepareEmailText: data => {
     const payment = {
-      onPlace: "На месте",
-      cheboksary: "Чебоксары",
-      moscow: "Москва"
+      "onPlace": "На месте",
+      "cheboksary": "Чебоксары",
+      "moscow": "Москва"
     };
     const level = {
-      null: "Нулевой",
-      beginer: "Начальный",
-      basic: "Базовый",
-      middle: "Средний",
-      high: "Высокий"
+      "null": "Нулевой",
+      "beginer": "Начальный",
+      "basic": "Базовый",
+      "middle": "Средний",
+      "high": "Высокий"
     };
     const residence = {
-      tent: "В палатке",
+      "tent": "В палатке",
       "2floor": "2й этаж над столовой",
-      corp20: "Корпус №20",
-      zabava: "Домик Забава",
-      veranda: "На веранде (для организаторов)"
+      "corp20": "Корпус №20",
+      "zabava": "Домик Забава",
+      "veranda": "На веранде (для организаторов)"
     };
     const duration = {
       "1": "1 день",
@@ -58,8 +58,8 @@ module.exports = {
       "7": "7 дней"
     };
     const job = {
-      student: "студент",
-      other: "прочие"
+      "student": "студент",
+      "other": "прочие"
     };
     let text = "Новая заявка на участие в летнем лагере Хавал!\n\n";
     text =
@@ -108,7 +108,6 @@ module.exports = {
       payment[data.payment] +
       (data.job ? ", Статус: " + job[data.job] : "") +
       "\n";
-    console.log(text);
     return text;
   }
 };
