@@ -24,9 +24,14 @@ class ParticipantsTable extends Component {
 
   render() {
     const { fetching, registrations } = this.props;
+    const pagination = {
+      pageSize: 20,
+      total: registrations.length,
+      showTotal: (total, range) => `${range[0]}-${range[1]} из ${total}`
+    }; 
     return (
       <div>
-        <Table columns={columns} dataSource={registrations} loading={fetching} size="small" pagination={{pageSize: 20}} />
+        <Table columns={columns} dataSource={registrations} loading={fetching} size="small" pagination={pagination} />
       </div>
     );
   }
