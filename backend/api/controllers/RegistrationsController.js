@@ -149,4 +149,16 @@ module.exports = {
         return res.status(500).send({ message: error.message })
       });
   },
+  viewReport: (req, res) => {
+    Registrations.readRegistrations()
+    .then(result => {
+      const results = Utils.sortArrayItems(result, "createdAt", "DESC");
+      if (req.session.loggedIn) {
+        return res.status(200).send(Utils.prepareRegistrationList(results));
+      } else {
+        return res.status(401).send({ message: 'Not authorized!' });
+      }
+    })
+    .catch(error => res.status(500).send(error));
+}
 };

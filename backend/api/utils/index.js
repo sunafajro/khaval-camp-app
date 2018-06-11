@@ -1,3 +1,36 @@
+const payment = {
+  "onPlace": "На месте",
+  "cheboksary": "Чебоксары",
+  "moscow": "Москва"
+};
+const level = {
+  "null": "Нулевой",
+  "beginer": "Начальный",
+  "basic": "Базовый",
+  "middle": "Средний",
+  "high": "Высокий"
+};
+const residence = {
+  "tent": "В палатке",
+  "2floor": "2й этаж над столовой",
+  "corp20": "Корпус №20",
+  "zabava": "Домик Забава",
+  "veranda": "На веранде (для организаторов)"
+};
+const duration = {
+  "1": "1 день",
+  "2": "2 дня",
+  "3": "3 дня",
+  "4": "4 дня",
+  "5": "5 дней",
+  "6": "6 дней",
+  "7": "7 дней"
+};
+const job = {
+  "student": "студент",
+  "other": "прочие"
+};
+
 /**
  * sorts a array by key
  * @param {Array} items
@@ -29,38 +62,6 @@ module.exports = {
     }
   },
   prepareEmailText: data => {
-    const payment = {
-      "onPlace": "На месте",
-      "cheboksary": "Чебоксары",
-      "moscow": "Москва"
-    };
-    const level = {
-      "null": "Нулевой",
-      "beginer": "Начальный",
-      "basic": "Базовый",
-      "middle": "Средний",
-      "high": "Высокий"
-    };
-    const residence = {
-      "tent": "В палатке",
-      "2floor": "2й этаж над столовой",
-      "corp20": "Корпус №20",
-      "zabava": "Домик Забава",
-      "veranda": "На веранде (для организаторов)"
-    };
-    const duration = {
-      "1": "1 день",
-      "2": "2 дня",
-      "3": "3 дня",
-      "4": "4 дня",
-      "5": "5 дней",
-      "6": "6 дней",
-      "7": "7 дней"
-    };
-    const job = {
-      "student": "студент",
-      "other": "прочие"
-    };
     let text = "Новая заявка на участие в летнем лагере Хавал!\n\n";
     text =
       text +
@@ -108,6 +109,27 @@ module.exports = {
       payment[data.payment] +
       (data.job ? ", Статус: " + job[data.job] : "") +
       "\n";
+    return text;
+  },
+  prepareRegistrationList: data => {
+    let text = "Имя;Пол;Дата рождения;Телефон;Email;Соцсеть;Город;Страна;Уровень языка;Проживание;Комната;Продолжительность;Питание;Оплата;Статус\n";
+    data.forEach(item => {
+      text = text + item.data.lastName + " " + item.data.firstName + " (" + item.data.chuvashName + ");";
+      text = text + (item.data.sex === "male" ? "Муж" : "Жен") + ";";
+      text = text + item.data.birthdate + ";";
+      text = text + item.data.phone + ";";
+      text = text + item.data.email + ";";
+      text = text + item.data.social + ";";
+      text = text + item.data.city + ";";
+      text = text + item.data.country + ";";
+      text = text + level[item.data.level] + ";";
+      text = text + residence[item.data.residence] + ";";
+      text = text + (item.data.room ? item.data.room : "") + ";";
+      text = text + duration[item.data.duration] + ";";
+      text = text + (item.data.food !== "vegetarian" ? "Всеядный" : "Вегетарианец") + ";";
+      text = text + payment[item.data.payment] + ";";
+      text = text + (item.data.job ? job[item.data.job] : "") + ";\n";
+    });
     return text;
   }
 };

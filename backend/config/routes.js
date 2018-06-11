@@ -38,6 +38,7 @@ module.exports.routes = {
   "POST /api/registrations": "RegistrationsController.createRegistration",
   "PUT /api/registrations": "RegistrationsController.updateRegistration",
   "DELETE /api/registrations": "RegistrationsController.deleteRegistration",
+  "GET /api/report": "RegistrationsController.viewReport",
   "POST /api/login": "AuthController.login",
   "POST /api/logout": "AuthController.logout",
   "GET /information": { view: "homepage" },
