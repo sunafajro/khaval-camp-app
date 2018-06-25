@@ -42,4 +42,21 @@ class Registration extends \yii\db\ActiveRecord
         }
         return $result;
     }
+
+    public static function getOccupiedRooms()
+    {
+        $registrations = Registration::find()->where(['in', 'residence', ['corp20', 'zabava']])->all();
+        $result = [
+          "corp20" => [],
+          "zabava" => [],
+        ];
+        forEach($registrations as $r) {
+          if($r->residence === "corp20") {
+            $result['corp20'][] = $r->room;
+          } else if($r->residence === "zabava") {
+            $result['zabava'][] = $r->room;
+          }
+        }
+        return $result;
+    }
 }

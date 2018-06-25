@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use app\models\Element;
 use app\models\Registration;
 use yii\web\Controller;
 use yii\web\Response;
@@ -55,7 +56,7 @@ class ApiController extends Controller
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         return [
-            'result' => []
+            'result' => Element::getPreparedElements()
         ];
     }
 
@@ -63,7 +64,7 @@ class ApiController extends Controller
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         return [
-            'result' => []
+            'result' => Registration::getOccupiedRooms()
         ];
     }
 
