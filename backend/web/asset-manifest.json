@@ -1,0 +1,4 @@
+{
+  "main.css": "static/css/bundle.css",
+  "main.js": "static/js/bundle.js"
+}
