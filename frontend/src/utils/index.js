@@ -11,7 +11,7 @@ export const Spinner = () => (
 
 export const getCsrfToken = () => {
   return new Promise((resolve, reject) => {
-    fetch("/csrfToken", {
+    fetch("/csrf", {
       method: "GET",
       accept: "application/json",
       credentials: "include",
