@@ -53,6 +53,7 @@ $config = [
                 '/information'  => 'site/index',
                 '/registration' => 'site/index',
                 '/participants' => 'site/index',
+                '/csrf'         => 'site/csrf',
             ]
 
         ],
