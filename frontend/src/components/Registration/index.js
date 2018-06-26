@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { array, bool, func, object, string } from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { createRegistration, getFormElements, getOccupiedRooms } from "../../redux/actions/registrations";
+import {
+  createRegistration,
+  getFormElements,
+  getOccupiedRooms
+} from "../../redux/actions/registrations";
 import { Button, Col, message, Modal, Row, Tooltip } from "antd";
 import Moment from "moment";
 import Recaptcha from "react-grecaptcha";
@@ -35,6 +39,7 @@ class RegForm extends Component {
     form: { ...emptyForm },
     num: 1,
     recaptchaResponse: "",
+    showRecaptcha: false,
     totalCostParts: "0 + 0 + 0 + 0",
     totalCost: 0,
     visible: false
@@ -53,7 +58,7 @@ class RegForm extends Component {
     location: object.isRequired,
     match: object.isRequired,
     occupiedRooms: object.isRequired,
-    registration: object.isRequired,
+    registration: object.isRequired
   };
 
   componentDidMount() {
@@ -137,7 +142,11 @@ class RegForm extends Component {
         this.props.getOccupiedRooms();
       }
     }
-    this.setState({ form, totalCost, totalCostParts });
+    if (!this.state.showRecaptcha) {
+      this.setState({ form, showRecaptcha: true, totalCost, totalCostParts });
+    } else {
+      this.setState({ form, totalCost, totalCostParts });
+    }
   };
 
   verifyCallback = response => this.setState({ recaptchaResponse: response });
@@ -168,11 +177,19 @@ class RegForm extends Component {
       form,
       num,
       recaptchaResponse,
+      showRecaptcha,
       totalCost,
       totalCostParts,
       visible
     } = this.state;
-    const { creating, elements, fetching, fetchingRooms, lang, occupiedRooms } = this.props;
+    const {
+      creating,
+      elements,
+      fetching,
+      fetchingRooms,
+      lang,
+      occupiedRooms
+    } = this.props;
     return (
       <Aux>
         <div>
@@ -200,14 +217,15 @@ class RegForm extends Component {
               );
             })
           )}
-
-          <Recaptcha
-            sitekey={"6LcaGUQUAAAAAAYqfwQdwGZBd-YWYRpNc6EObT1s"}
-            callback={this.verifyCallback}
-            expiredCallback={this.expiredCallback}
-            locale="ru_RU"
-            className="customClassName"
-          />
+          {showRecaptcha ? (
+            <Recaptcha
+              sitekey={"6LcaGUQUAAAAAAYqfwQdwGZBd-YWYRpNc6EObT1s"}
+              callback={this.verifyCallback}
+              expiredCallback={this.expiredCallback}
+              locale="ru_RU"
+              className="customClassName"
+            />
+          ) : null}
           <Row style={{ marginTop: "1em" }}>
             <Col span={12}>
               <Button
@@ -277,6 +295,7 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export const RegistrationForm = connect(mapStateToProps, mapDispatchToProps)(
-  RegForm
-);
+export const RegistrationForm = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RegForm);
