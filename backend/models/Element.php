@@ -32,12 +32,12 @@ class Element extends Model {
                 "type" => "input"
             ],
             [
-                "num" => 2,
-                "name" => "firstNameEl",
+                "num" => 3,
+                "name" => "chuvashNameEl",
                 "label" => [
-                    "cv" => "Имя",
-                    "ru" => "Имя",
-                    "en" => "First Name"
+                    "cv" => "Чувашское имя",
+                    "ru" => "Чувашское имя",
+                    "en" => "Chuvash Name"
                 ],
                 "items" => [],
                 "type" => "input"
